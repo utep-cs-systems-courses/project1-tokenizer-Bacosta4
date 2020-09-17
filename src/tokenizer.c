@@ -31,6 +31,21 @@ char *word_start(char *str)
   return *str
 }
 
+char *word_terminator(char *word)
+{
+  if (i = 0; *word != 0; i++)
+    {
+      if(space_char(*word))
+	{
+	  return 1;
+	}
+    }
+  return *word;
+}
 
+int count_words(char *str)
+{
+  int count = 0;
+  
    
       
