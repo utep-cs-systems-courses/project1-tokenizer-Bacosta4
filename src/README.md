@@ -9,4 +9,4 @@ return the input if the user requests it.
 
 # Compile/ Run:
 
-Working on it.
+To compile type "make rumtokenizer" on the shell.
