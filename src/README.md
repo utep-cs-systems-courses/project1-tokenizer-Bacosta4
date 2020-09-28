@@ -2,11 +2,10 @@ Project 1: Tokenizer
 ====================
 # Overview:
 
-This assignment is to build a tokenizer and history. Tokenizer consists of
-creating a tokenizer and histpory that upon running it breaks downsentences
-into tokens. History will maintain all history the user has inputed and will
-return the input if the user requests it.
+This assignment is to create a tokenizer/ history.
+Tokenizer consists of methods upon running it breaks down sentencesinto tokens. 
+History will have methods that will maintain all history the user has input and will return the input back to the user.
 
 # Compile/ Run:
 
-Working on it.
+To compile write "make runtokenizer" on the shell. //Not working at this momment
