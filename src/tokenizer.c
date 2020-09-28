@@ -21,34 +21,28 @@ int main(){
 
 int space_char(char c)
 {
-  if ((c == '\t' || c == ' ') && c == '\0')
-    {
+  if ((c == '\t' || c == ' ') && c == '\0'){
       return 1; // True if it contains a tab/ space
     }
-  else
-    {
+  else{
       return 0;
     }
 }
 
 int non_space_char(char c)
 {
-  if ((c == '\t' || c == ' ') && c == '\0')
-    {
+  if ((c == '\t' || c == ' ') && c == '\0'){
       return 0; // True if not a tab/ space
     }
-  else
-    {
+  else{
       return 1;
     }
 }
 
 char *word_start(char *str)
 {
-  for (int i = 0; i >= 0; i++)
-    {
-      if(non_space_char(str[1])) // Checks if there is non space
-	{
+  for (int i = 0; i >= 0; i++) {
+    if(non_space_char(str[1])) { // Checks if there is non space
 	  char *p = &str[i];
 	  return p;
 	}
@@ -58,34 +52,64 @@ char *word_start(char *str)
 }
 
 char *word_terminator(char *str){
-  for(int i = 0; i >=0;i++){
-    if(non_space_char(str[i])){
-      if(space_char(str[i+1]) || str[i+1] == '\n'){
-	char *p = &str[i];
-	return p;
+  // Checks until next space or new line
+  for(int i = 0; i >=0;i++) {
+      if(non_space_char(str[i])) {
+	if(space_char(str[i+1]) || str[i+1] == '\n') {
+	  char *p = &str[i];
+	  return p;
       }
     }
   }
 }
   
-int count_words(char *str)
+int count_words(char *
+		str)
 {
   int i = 0;
   int words= 0;
   char iterator;
-  while ((iterator = *str++) != '\0')
-    {
-    if (non_space_char(iterator))
-      {
-      if(i == 0 && iterator != '\n')
-	{
-	words++;
-	i = 1;
+  
+  while ((iterator = *str++) != '\0') {
+    if (non_space_char(iterator)) {
+      if(i == 0 && iterator != '\n') {
+	  words++;
+	  i = 1;
+	}
+      }
+    else {
+	i = 0;
       }
     }
-    else{
-      i = 0;
-    }
-  }
   return words;
+}
+
+char *copy_str(char *inStr, short len)
+{
+  char *ptr = (char*) malloc (len+1);
+  for(int i = 0; i <= len; i++) {
+      ptr[i] = inStr[i];
+    }
+  ptr[len+1] = '\0';
+  return ptr;
+}
+
+void print_tokens(char **tokens)
+{
+  int i = 0;
+  while(tokens[i] != 0) {
+    printf("%s\n", tokens[i]); // Prints all strings
+      i++;
+    }
+}
+
+void free_tokens(char **tokens)
+{
+  int i = 0;
+  while(tokens[i] != 0) {      // Goes through every token
+    free(tokens[i]);           // Freeing while progressing
+    i++;
+  }
+  free(tokens[i+1]);           // Free the zero terminator  
+  free(tokens);                // Then the token itself
 }

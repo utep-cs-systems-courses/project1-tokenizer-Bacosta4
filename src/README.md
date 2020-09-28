@@ -1,12 +1,12 @@
 Project 1: Tokenizer
 ====================
-# Instructions:
+# Overview:
 
-You should document your tokenizer in this file.
+This assignment is to build a tokenizer and history. Tokenizer consists of
+creating a tokenizer and histpory that upon running it breaks downsentences
+into tokens. History will maintain all history the user has inputed and will
+return the input if the user requests it.
 
-This file is written in the refreshingly simple `markdown` text
-formatting language.
+# Compile/ Run:
 
-To learn about text formatting using markdown, we encourage you to examine 
- - [../README.md](../README.md)
- - the online [Markdown Guide](https://www.markdownguide.org/).
+Working on it.
