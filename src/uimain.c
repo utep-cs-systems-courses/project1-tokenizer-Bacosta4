@@ -3,60 +3,41 @@
 #include "tokenizer.h"
 #include "history.h"
 
-
-//Simple ui
 int main()
 {
-  
-  printf("Hello User.")
-    
   char input[100];
+  List *history = init_history();
 
   while(1) {
-    
-    printf("Please choose an option:\n");
-    printf("1. Input 's' to write a sentence\n");
-    printf("2. Input 'h' to see all history\n");
+    printf("Choose the following:\n");
+    printf("1. Input '1' to input\n");
+    printf("2. Input '2' to view history\n");
     printf("3. Input '!' followed by a number to recall history\n");
-    printf("4. Input 'q' to exit\n");
-
+    printf("4. Input '3' to exit\n");
     printf(">");
-
     fgets(input, 100, stdin);
 
-    switch(input[0])
-      {
+    if (input[0] == '1') {
+      printf("Enter sentence:\n>");
+      fgets(input, 100, stdin);
+      char **tokens = tokenize(input);
+      print_tokens(tokens);
+      add_history(history, input);
+      free_tokens(tokens);
+    }
+    else if (input[0] == '2') {
+      print_history(history);
+    }
 
-      case 's':
+    else if (input[0] == '!') {
+      int id = atoi(input +1);
+      printf("\n%s\n", get_history(history, id));
 
-	printf("Please enter a sentence:\n >");
-
-	break;
-
-
-
-      case 'h':
-
-
-	break;
-
-      case '!':
-
-	break;
-
-
-      case 'q':
-
-	printf("Thank you for using tokenizerln Goodbye!");
-
+    }
+    else if (input[0] == '3') {
+      printf("End of program\n");
+      free_history(history);
       return 0;
-
-      break;
-
-      default:
-	printf("You have choosen an incorrect input.\n Try Again");
-
-      }
+    }
   }
-  return 0;
 }

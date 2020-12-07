@@ -1,5 +1,4 @@
-
-runtokenizer: tokenizer.o uimain.o history.o
+tokenizer: tokenizer.o uimain.o history.o
 	cc -o tokenizer tokenizer.o uimain.o history.o
 
 clean:
@@ -7,10 +6,6 @@ clean:
 
 tokenizer.o: tokenizer.h tokenizer.c
 
-
-
 uimain.o: uimain.c tokenizer.h history.h
-
-
 
 history.o: history.h history.c tokenizer.h
