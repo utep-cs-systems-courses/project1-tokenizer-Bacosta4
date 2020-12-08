@@ -33,21 +33,21 @@ char *get_history(List *list, int id)
 {
   Item *temp = list->root;
 
-  while(temp != 0) {
+  while(temp != 0) {                         // Goes through the list
     if(temp->id == id) {
-      return temp->str;
+      return temp->str;                       // returns str if id matches id
     }
     temp = temp->next;
   }
-  return NULL;   // if not found, return null
+  return NULL;                                // if not found, return null
 }
 
 void print_history(List *list)
 {
   Item *temp = list->root->next;
 
-  while (temp != NULL) {
-    printf("&d. %s\n",temp->id, temp->str);
+  while (temp != NULL) {                       
+    printf("%d. %s",temp->id, temp->str);    // prints word with id
     temp = temp->next;
   }
 }
@@ -59,8 +59,8 @@ void free_history(List *list)
   while(temp != NULL) {
     Item *curr = temp;
     temp = temp->next;
-    free(curr);
+    free(curr);            
   }
-  free(temp);
-  free(list);
+  free(temp);             //free node
+  free(list);             //free list
 }

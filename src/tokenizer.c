@@ -3,8 +3,8 @@
 #include "tokenizer.h"
 
 int space_char(char c){
-  if (c == ' ' || c == '\t') {
-    return 1;
+  if (c == ' ' || c == '\t' || c == 0) {
+    return 1;                       //true if char is tab/ space
   }
   else {
     return 0;
@@ -13,7 +13,7 @@ int space_char(char c){
 
 int non_space_char(char c) {
   if (c ==' ' || c == '\t' || c=='\0'){
-    return 0;
+    return 0;                      // true if char is not in tab/space
   }
   else {
     return 1;
@@ -38,7 +38,7 @@ char *word_terminator(char *str){
       if(non_space_char(str[i])) {
 	if(space_char(str[i+1]) || str[i+1] == '\n') {
 	  char *p = &str[i];
-	  return p;
+	  return p;                                    // return pointer
       }
     }
   }
@@ -46,19 +46,19 @@ char *word_terminator(char *str){
   
 int count_words(char *str)
 {
-  int i = 0;
+  int i = 0;                    // i tracks whether or not the iterator is currently within a word.
   int numWords= 0;
   char iterator;
-  
+                        
   while ((iterator = *str++) != '\0') {
-    if (non_space_char(iterator)) {
-      if(i == 0 && iterator != '\n') {
-	  numWords++;
+    if (non_space_char(iterator)) {           // if current char not in a space i = 0
+      if(i == 0 && iterator != '\n') {        // increase word count and i set i = 1
+	  numWords++;                                 
 	  i = 1;
 	}
       }
-    else {
-	i = 0;
+    else {                                    // char is space its not in a word
+	i = 0;   
       }
     }
   return numWords;
@@ -68,9 +68,9 @@ char *copy_str(char *inStr, short len)
 {
   char *ptr = (char*) malloc (len+1);
   for(int i = 0; i <= len; i++) {
-      ptr[i] = inStr[i];
+    ptr[i] = inStr[i];                      // copy content into ptr
     }
-  ptr[len+1] = '\0';
+  ptr[len+1] = '\0';                       // last value in ptr
   return ptr;
 }
 
@@ -94,29 +94,29 @@ void free_tokens(char **tokens)
   free(tokens);                // Then the token itself
 }
 
-//Accepts a string and tokenizes it.
+                                                             //Accepts a string and tokenizes it.
  char** tokenize(char* str){
 
    int numWords = count_words(str);
-   //Malloc-ing tokens double-pointer.
+                                                                //Malloc-ing tokens double-pointer.
    char **tokens = (char**)malloc((numWords+1)*sizeof(char*));
 
-   //For every word, find the start and end of word.
+                                                  //For every word, find the start and end of word.
    for(int i = 0; i < numWords; i++){
      char *wStart = word_start(str);
      char *wEnd = word_terminator(str);
      char *temp = wStart;
      int length = 0;
-     //Finding the length of the word
+                                                                //Finding the length of the word
      while(temp != wEnd){
        temp++;
        length++;
      }
-     //Copying the word into tokens at index i.
+                                                         //Copying the word into tokens at index i.
      tokens[i] = copy_str(wStart,length);
      str = wEnd+1;
    }
-   //The final index is reserved for the zero terminator.
+                                            //The final index is reserved for the zero terminator.
    tokens[numWords+1] = '\0';
    return tokens;
  }
