@@ -99,8 +99,7 @@ void free_tokens(char **tokens)
 
    int numWords = count_words(str);
                                                                 //Malloc-ing tokens double-pointer.
-   //char **tokens = (char**)malloc((numWords+1)*sizeof(char*));
-   char **tokens = malloc((numWords+1) *sizeof(char *));
+   char **tokens = (char**)malloc((numWords+1)*sizeof(char*));
                                                   //For every word, find the start and end of word.
    for(int i = 0; i < numWords; i++){
      char *wStart = word_start(str);
@@ -117,6 +116,6 @@ void free_tokens(char **tokens)
      str = wEnd+1;
    }
                                             //The final index is reserved for the zero terminator.
-   tokens[numWords+1] = 0;
+   tokens[numWords+1] = '\0';
    return tokens;
  }

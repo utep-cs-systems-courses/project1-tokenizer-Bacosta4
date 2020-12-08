@@ -3,8 +3,7 @@
 #include "history.h"
 #include "tokenizer.h"
 
-List *init_history()
-{
+List *init_history() {
   List *list = malloc(sizeof(List));    // Allocate memory for list
   return list;
 }
@@ -13,14 +12,14 @@ void add_history(List *list, char *str)
 {
   Item *new_node = malloc(sizeof(Item));
   new_node->str = str;
- 
+
   if (list->root == NULL) {   // If the first item in the list , it becomes the root.
     new_node->id = 1;
     new_node->next = NULL;
     list->root = new_node;
   }
   else {                          // otherwise make the new node a point to the old root, then
-                                  //assign root to the new note
+                                                  //assign root to the new note
     int curr_id = list->root->id;
     curr_id++;
     new_node->id = curr_id;
@@ -44,12 +43,12 @@ char *get_history(List *list, int id)
 
 void print_history(List *list)
 {
-  Item *temp = list->root->next;
+Item *temp = list->root;
 
-  while (temp != NULL) {                       
-    printf("%d. %s",temp->id, temp->str);    // prints word with id
-    temp = temp->next;
-  }
+while (temp != NULL) {                       
+  printf("%d. %s\n",temp->id, temp->str);    // prints word with id
+  temp = temp->next;
+ }
 }
 
 void free_history(List *list)

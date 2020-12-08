@@ -6,8 +6,11 @@
 int main()
 {
   char input[100];
-  List *history = init_history();
-
+  char input2[100];
+  List* history = init_history();
+  add_history(history, "hello world");
+  add_history(history, "a b c ");
+  
   while(1) {
     printf("Choose the following:\n");
     printf("1. Input '1' to input\n");
@@ -19,10 +22,10 @@ int main()
 
     if (input[0] == '1') {
       printf("Enter sentence:\n>");
-      fgets(input, 100, stdin);
-      char **tokens = tokenize(input);
+      fgets(input2, 100, stdin);
+      char **tokens = tokenize(input2);
       print_tokens(tokens);
-      add_history(history, input);
+      add_history(history, input2);
       free_tokens(tokens);
     }
     else if (input[0] == '2') {
